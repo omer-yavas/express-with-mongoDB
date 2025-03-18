@@ -7,4 +7,6 @@ router
   .get(hotelController.getAllHotels)
   .post(hotelController.createHotel);
 
+router.route("/:id").patch(hotelController.updateHotel);
+
 module.exports = router;
