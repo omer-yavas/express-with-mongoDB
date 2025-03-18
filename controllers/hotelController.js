@@ -59,3 +59,26 @@ exports.updateHotel = async (req, res) => {
     });
   }
 };
+
+exports.deleteHotel = async (req, res) => {
+  try {
+    const hotel = await Hotel.findByIdAndDelete(req.params.id);
+
+    if (!hotel) {
+      return res.status(404).json({
+        status: "fail",
+        message: "No hotel found with that ID",
+      });
+    }
+
+    res.status(204).json({
+      status: "success",
+      data: null,
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: "fail",
+      message: err.message,
+    });
+  }
+};
