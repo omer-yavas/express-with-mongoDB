@@ -18,3 +18,23 @@ exports.getAllHotels = async (req, res) => {
     });
   }
 };
+
+exports.createHotel = async (req, res) => {
+  try {
+    const newHotel = await Hotel.create(req.body);
+
+    res.status(201).json({
+      status: "success",
+      data: {
+        hotel: newHotel,
+      },
+    });
+  } catch (err) {
+    console.error(err);
+
+    res.status(400).json({
+      status: "fail",
+      message: err,
+    });
+  }
+};
